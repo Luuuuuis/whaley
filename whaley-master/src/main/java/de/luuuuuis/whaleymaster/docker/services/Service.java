@@ -1,6 +1,6 @@
 /*
  * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 06.10.21, 20:05
+ * Last modified 16.10.21, 19:23
  * Copyright (c) 2021
  */
 
@@ -26,7 +26,8 @@ public abstract class Service {
 
     public Service(Docker docker, List<Service> serviceList) {
         this.docker = docker;
-        //serviceList.add(this);
+        serviceList.add(this);
+        docker.getServiceList().add(this);
     }
 
     public abstract ServicePlacement servicePlacement();
@@ -69,6 +70,7 @@ public abstract class Service {
                         .withPlacement(servicePlacement())
                         .withRestartPolicy(new ServiceRestartPolicy().withCondition(ServiceRestartCondition.ANY))
                         .withResources(resourceRequirements), replicas);
+
         docker.getDockerClient().updateServiceCmd(service.getId(), serviceSpec)
                 .withVersion(Objects.requireNonNull(service.getVersion()).getIndex()).exec();
 

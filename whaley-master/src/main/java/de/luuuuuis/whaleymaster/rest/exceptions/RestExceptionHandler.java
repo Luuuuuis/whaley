@@ -1,6 +1,6 @@
 /*
  * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 06.10.21, 19:07
+ * Last modified 16.10.21, 19:31
  * Copyright (c) 2021
  */
 
@@ -34,6 +34,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleExceptions(Exception ex) {
+        ex.printStackTrace();
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex));
     }
 

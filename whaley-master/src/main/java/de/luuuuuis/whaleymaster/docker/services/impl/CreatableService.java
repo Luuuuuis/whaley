@@ -1,6 +1,6 @@
 /*
  * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 06.10.21, 20:06
+ * Last modified 16.10.21, 19:49
  * Copyright (c) 2021
  */
 
@@ -13,7 +13,7 @@ import com.github.dockerjava.api.model.ServicePlacement;
 import de.luuuuuis.whaleymaster.docker.Docker;
 import de.luuuuuis.whaleymaster.docker.services.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreatableService extends Service {
@@ -25,7 +25,7 @@ public class CreatableService extends Service {
     private final EndpointResolutionMode endpointResolutionMode;
 
     public CreatableService(Docker docker, String serviceName, List<PortConfig> ports, ContainerSpec containerSpec, ServicePlacement servicePlacement, EndpointResolutionMode endpointResolutionMode) {
-        super(docker, Collections.emptyList());
+        super(docker, new ArrayList<>());
 
         this.serviceName = serviceName;
         this.ports = ports;

@@ -1,6 +1,6 @@
 /*
  * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 06.10.21, 19:24
+ * Last modified 16.10.21, 19:33
  * Copyright (c) 2021
  */
 
@@ -12,12 +12,17 @@ import com.github.dockerjava.core.DockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
 import com.github.dockerjava.transport.DockerHttpClient;
+import de.luuuuuis.whaleymaster.docker.services.Service;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class Docker {
 
     private final DockerClient dockerClient;
+    private final List<Service> serviceList = new ArrayList<>();
 
     public Docker() {
         DockerClientConfig clientConfig = DefaultDockerClientConfig.createDefaultConfigBuilder()

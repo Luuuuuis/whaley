@@ -1,13 +1,17 @@
 /*
  * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 06.10.21, 20:16
+ * Last modified 16.10.21, 19:47
  * Copyright (c) 2021
  */
 
 package de.luuuuuis.whaleymaster.rest.controllers.docker.service;
 
-import com.github.dockerjava.api.model.*;
+import com.github.dockerjava.api.model.ContainerSpec;
+import com.github.dockerjava.api.model.EndpointResolutionMode;
+import com.github.dockerjava.api.model.PortConfig;
+import com.github.dockerjava.api.model.ServicePlacement;
 import de.luuuuuis.whaleymaster.WhaleyMasterApplication;
+import de.luuuuuis.whaleymaster.docker.services.Service;
 import de.luuuuuis.whaleymaster.docker.services.impl.CreatableService;
 import lombok.Data;
 import lombok.NonNull;
@@ -20,19 +24,27 @@ import java.util.List;
 @RequestMapping("/docker/service")
 public class ServiceController {
 
-    @GetMapping("/{service}")
-    public Service getService(@PathVariable String service) {
-        return WhaleyMasterApplication.getDocker().getDockerClient().inspectServiceCmd(service).exec();
+    @GetMapping("/{serviceName}")
+    public com.github.dockerjava.api.model.Service getService(@PathVariable String serviceName) {
+        return WhaleyMasterApplication.getDocker().getDockerClient().inspectServiceCmd(serviceName).exec();
     }
 
     @GetMapping("/all")
     public Object[] getAllServices() {
         return WhaleyMasterApplication.getDocker().getDockerClient().listServicesCmd().exec().toArray();
+//        return WhaleyMasterApplication.getDocker().getServiceList().toArray();
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public void createService(@RequestBody ServiceModel serviceModel) {
-        new CreatableService(WhaleyMasterApplication.getDocker(), serviceModel.getName(), serviceModel.getPorts(), serviceModel.getContainerSpec(), serviceModel.getServicePlacement(), serviceModel.getEndpointResolutionMode());
+    public Service createService(@RequestBody ServiceModel serviceModel) {
+        return new CreatableService(WhaleyMasterApplication.getDocker(), serviceModel.getName(), serviceModel.getPorts(), serviceModel.getContainerSpec(), serviceModel.getServicePlacement(), serviceModel.getEndpointResolutionMode());
+    }
+
+    @PostMapping("/{serviceName}/scale")
+    public Service scaleService(@PathVariable String serviceName, @RequestBody int replicas) {
+        Service service = WhaleyMasterApplication.getDocker().getServiceList().stream().filter(serv -> serv.serviceName().equals(serviceName)).findFirst().orElseThrow();
+        service.updateService(replicas);
+        return service;
     }
 }
 

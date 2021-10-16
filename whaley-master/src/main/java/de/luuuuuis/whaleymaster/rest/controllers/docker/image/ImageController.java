@@ -1,6 +1,6 @@
 /*
  * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 06.10.21, 19:36
+ * Last modified 16.10.21, 19:12
  * Copyright (c) 2021
  */
 
@@ -28,7 +28,7 @@ public class ImageController {
     }
 
     @PostMapping()
-    public boolean createImage(@RequestBody String image) throws InterruptedException {
+    public boolean pullImage(@RequestBody String image) throws InterruptedException {
         PullImageResultCallback pullImageResultCallback = WhaleyMasterApplication.getDocker().getDockerClient().pullImageCmd(image).exec(new PullImageResultCallback());
 
         return pullImageResultCallback.awaitCompletion(1, TimeUnit.MINUTES);
