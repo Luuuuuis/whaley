@@ -1,6 +1,6 @@
 /*
- * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 16.10.21, 19:47
+ * Developed by Luis (@realluuuuuis)
+ * Last modified 16.10.21, 20:53
  * Copyright (c) 2021
  */
 
@@ -15,7 +15,6 @@ import de.luuuuuis.whaleymaster.docker.services.Service;
 import de.luuuuuis.whaleymaster.docker.services.impl.CreatableService;
 import lombok.Data;
 import lombok.NonNull;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class ServiceController {
 //        return WhaleyMasterApplication.getDocker().getServiceList().toArray();
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping()
     public Service createService(@RequestBody ServiceModel serviceModel) {
         return new CreatableService(WhaleyMasterApplication.getDocker(), serviceModel.getName(), serviceModel.getPorts(), serviceModel.getContainerSpec(), serviceModel.getServicePlacement(), serviceModel.getEndpointResolutionMode());
     }
@@ -56,6 +55,5 @@ class ServiceModel {
     private @NonNull ContainerSpec containerSpec;
     private ServicePlacement servicePlacement;
     private EndpointResolutionMode endpointResolutionMode;
-
 
 }

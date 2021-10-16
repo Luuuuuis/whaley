@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "whaley.http.auth-token-header-name",
+      "type": "java.lang.String",
+      "description": "API Key header name."
+    },
+    {
+      "name": "whaley.http.auth-token",
+      "type": "java.lang.String",
+      "description": "The API Key."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Developed by Luis (Luuuuuis @realluuuuuis)
-  ~ Last modified 16.10.21, 11:45
+  ~ Developed by Luis (@realluuuuuis)
+  ~ Last modified 16.10.21, 20:48
   ~ Copyright (c) 2021
   -->
 
@@ -52,9 +52,18 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>

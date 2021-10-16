@@ -1,6 +1,6 @@
 /*
- * Developed by Luis (Luuuuuis @realluuuuuis)
- * Last modified 16.10.21, 19:49
+ * Developed by Luis (@realluuuuuis)
+ * Last modified 16.10.21, 20:48
  * Copyright (c) 2021
  */
 
