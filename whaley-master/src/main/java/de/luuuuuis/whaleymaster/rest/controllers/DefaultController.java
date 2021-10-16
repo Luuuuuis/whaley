@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class DefaultController {
 
-    @GetMapping("/")
+    @GetMapping()
     @Cacheable("DEFAULT")
     public String getDefaultRoute() {
         return "Hello from the whaley rest api";

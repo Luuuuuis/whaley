@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/docker/image")
 public class ImageController {
 
-    @GetMapping("/")
+    @GetMapping()
     public InspectImageResponse getImage(@RequestBody String image) {
         return WhaleyMasterApplication.getDocker().getDockerClient().inspectImageCmd(image).exec();
     }
@@ -27,7 +27,7 @@ public class ImageController {
         return WhaleyMasterApplication.getDocker().getDockerClient().listImagesCmd().withShowAll(true).exec().toArray();
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public boolean createImage(@RequestBody String image) throws InterruptedException {
         PullImageResultCallback pullImageResultCallback = WhaleyMasterApplication.getDocker().getDockerClient().pullImageCmd(image).exec(new PullImageResultCallback());
 

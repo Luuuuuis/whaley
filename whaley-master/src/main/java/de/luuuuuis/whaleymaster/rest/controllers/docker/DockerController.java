@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/docker")
 public class DockerController {
 
-    @GetMapping("/")
-    @Cacheable("DOCEKR")
+    @GetMapping()
+    @Cacheable("DOCKER")
     public String getAbout() {
         return WhaleyMasterApplication.getDocker().getDockerClient().infoCmd().exec().toString();
     }

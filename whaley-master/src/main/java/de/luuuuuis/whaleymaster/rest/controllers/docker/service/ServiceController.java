@@ -30,7 +30,7 @@ public class ServiceController {
         return WhaleyMasterApplication.getDocker().getDockerClient().listServicesCmd().exec().toArray();
     }
 
-    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public void createService(@RequestBody ServiceModel serviceModel) {
         new CreatableService(WhaleyMasterApplication.getDocker(), serviceModel.getName(), serviceModel.getPorts(), serviceModel.getContainerSpec(), serviceModel.getServicePlacement(), serviceModel.getEndpointResolutionMode());
     }
